@@ -4,7 +4,7 @@
     use App\Auth\auth;
 
      header('Content-Type: application/json; charset=UTF-8');
-     header('X-Powered-By: AdamMajor');
+     header('X-Powered-By: Adam Major');
 
     function get($arr, $key){
         return (isset($arr[$key])) ? $arr[$key] : false;

@@ -49,11 +49,6 @@
             $_SESSION['auth_token'] = $user["auth_token"];
             return $user;
         }
-
-
         //function logout(){}
     }
-
-
-
 ?>

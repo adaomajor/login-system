@@ -1,1 +1,1 @@
-<?php system("php -S localhost:8080"); ?>
+<?php system("php -S localhost:8080"); /*run the local server*/ ?>

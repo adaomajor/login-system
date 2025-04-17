@@ -3,6 +3,7 @@
     use PDO;
     use Exception;
 
+    // database class
     class DB{
         private static $instance = null;
         private $connection;
