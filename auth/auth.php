@@ -12,8 +12,8 @@
         public static function login($email, $password){
             $db = DB::getConnection();
             $stmt = $db->prepare('SELECT id, name, surname, gender, phone, email FROM users WHERE email = :email AND password = :password');
-            $stmt = $db->bindValue(':email', $email);
-            $stmt = $db->bindValue(':password', md5($password));
+            $stmt->bindValue(':email', $email);
+            $stmt->bindValue(':password', md5($password));
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if(!$user){
