@@ -11,14 +11,15 @@
     class auth{
         public static function login($email, $password){
             $db = DB::getConnection();
-            $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
-            $stmt->execute([$email]);
+            $stmt = $db->prepare('SELECT id, name, surname, gender, phone, email FROM users WHERE email = :email AND password = :password');
+            $stmt = $db->bindValue(':email', $email);
+            $stmt = $db->bindValue(':password', md5($password));
+            $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if(!$user){
                 return false;
             }
-            if($user['password'] == md5($password)){
-                unset($user['password']);
+            if($user){
                 $user["auth_token"] = base64_encode(json_encode($user).".".bin2hex(random_bytes(32)));
                 $_SESSION['auth_token'] = $user["auth_token"];
                 return $user;
